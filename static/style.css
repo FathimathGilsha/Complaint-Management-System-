@@ -1,0 +1,36 @@
+/* Make sure this is loaded *after* Bootstrap in base.html */
+body {
+  background-color: #f8f9fa;
+  padding-top: 1rem;
+}
+
+/* Header customization */
+.navbar-brand {
+  font-weight: bold;
+  color: #007bff !important;
+}
+
+/* Card styling */
+.card {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Badge overrides */
+.badge {
+  font-size: 0.9rem;
+}
+
+/* Table row hover effect */
+.table-hover tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Footer or minor text */
+.text-muted a {
+  color: #007bff;
+  text-decoration: none;
+}
+.text-muted a:hover {
+  text-decoration: underline;
+}
