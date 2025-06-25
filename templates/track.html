@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block title %}My Complaints{% endblock %} {% block
+content %}
+<div class="card">
+  <div class="card-header">
+    <h5 class="mb-0">My Complaints</h5>
+  </div>
+  <div class="card-body">
+    {% if complaints %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Submitted At</th>
+            <th>Last Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in complaints %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ c.category }}</td>
+            <td>
+              {{ c.description[:50] }}{% if c.description|length > 50 %}…{%
+              endif %}
+            </td>
+            <td>
+              {% if c.status == 'New' %}
+              <span class="badge bg-secondary">{{ c.status }}</span>
+              {% elif c.status == 'In Progress' %}
+              <span class="badge bg-primary">{{ c.status }}</span>
+              {% elif c.status == 'Resolved' %}
+              <span class="badge bg-success">{{ c.status }}</span>
+              {% else %}
+              <span class="badge bg-info">{{ c.status }}</span>
+              {% endif %}
+            </td>
+            <td>{{ c.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>{{ c.updated_at.strftime('%Y-%m-%d %H:%M') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-muted">
+      You haven’t submitted any complaints yet.
+      <a href="{{ url_for('submit') }}">Submit one now.</a>
+    </p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
